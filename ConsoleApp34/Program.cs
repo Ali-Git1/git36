@@ -12,32 +12,58 @@ namespace ConsoleApp34
         {
             List<Exam> examlist = new List<Exam>();
 
+            basla:
+            Console.WriteLine("Daxil etmek istediyiniz exam sayini yazin :");
+            int girilendeyer;
+            if (!int.TryParse(Console.ReadLine(), out girilendeyer))
+            {
+                Console.WriteLine("Dogru deyer daxil edin");
+                goto basla; 
+            }
 
-            Console.WriteLine("Daxil etmet istediyiniz exam sayini yazin");
-            int girilendeyer = Convert.ToInt32(Console.ReadLine());
+
 
             for (int i = 0; i < girilendeyer; i++)
             {
                 Exam exam1 = new Exam();
 
+                start: 
+
                 Console.Write("Studenti daxil edin: ");
                 exam1.Student = Console.ReadLine();
 
-
                 Console.Write("Bal  daxil edin:");
-                exam1.Point = int.Parse(Console.ReadLine());
+                string pointInput = Console.ReadLine();
+                int point;
+                if (!int.TryParse(pointInput, out point))
+                {
+                    Console.WriteLine("Bali doğru daxil edin :");
+                    goto start; 
+                }
+                exam1.Point = point;
 
                 Console.Write("Imtahan adini daxil edin:");
-                exam1.Subject = (Console.ReadLine());
+                exam1.Subject = Console.ReadLine();
 
                 Console.Write("Baslangic vaxti  daxil edin:");
-                exam1.StartDate = DateTime.Parse(Console.ReadLine());
+                DateTime startDate;
+                if (!DateTime.TryParse(Console.ReadLine(), out startDate))
+                {
+                    Console.WriteLine("Baslama vaxtini dogru daxil edin :");
+                    goto start; 
+                }
+                exam1.StartDate = startDate;
 
-                Console.Write("Cixis vaxtini daxil edin:");
-                exam1.EndDate = DateTime.Parse(Console.ReadLine());
+                Console.Write("Cixis vaxtini daxil edin :");
+                DateTime endDate;
+                if (!DateTime.TryParse(Console.ReadLine(), out endDate))
+                {
+                    Console.WriteLine("Bitis vaxtini doğru daxil edin :");
+                    goto start; 
+                }
+                exam1.EndDate = endDate;
 
                 examlist.Add(exam1);
-
             }
 
             foreach (var exam1 in examlist)
